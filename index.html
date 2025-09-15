@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   <title>QR Coffee Quotes</title>
   <style>
     body {
       font-family: sans-serif;
       text-align: center;
       padding: 30px;
-      background: #eef7f2;
+      background: #f0f5f4;
     }
     .card {
       background: white;
@@ -16,7 +16,7 @@
       border-radius: 12px;
       max-width: 500px;
       margin: auto;
-      box-shadow: 0 6px 16px rgba(0,0,0,.15);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
     }
     img {
       max-width: 100%;
@@ -29,102 +29,80 @@
       margin-bottom: 8px;
     }
     .author {
-      color: #666;
-      margin-bottom: 12px;
-    }
-    button {
-      padding: 10px 16px;
-      border: none;
-      border-radius: 8px;
-      background: #0077cc;
-      color: white;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #005fa3;
+      color: #555;
+      font-style: italic;
     }
   </style>
 </head>
 <body>
   <div class="card">
-    <img id="heroImg" src="" alt="">
-    <p class="quote" id="quoteText">...</p>
-    <p class="author" id="authorText">...</p>
-    <button onclick="showRandom()">Đổi thông điệp</button>
+    <img id="heroImg" src="" alt="Nature image">
+    <p class="quote" id="quoteText"></p>
+    <p class="author" id="authorText"></p>
   </div>
 
   <script>
     const items = [
-      {img:"https://picsum.photos/600/400?1", quote:"Mặt trời mọc mỗi sáng nhắc ta rằng, luôn có một khởi đầu mới.", author:"— Bình minh", weight:10},
-      {img:"https://picsum.photos/600/400?2", quote:"Dòng sông không vội vã, nhưng cuối cùng vẫn ra tới biển.", author:"— Sông", weight:10},
-      {img:"https://picsum.photos/600/400?3", quote:"Lá rơi để nhường chỗ cho mầm non mới.", author:"— Mùa thu", weight:10},
-      {img:"https://picsum.photos/600/400?4", quote:"Cây cao bắt đầu từ một hạt mầm nhỏ bé.", author:"— Thiên nhiên", weight:10},
-      {img:"https://picsum.photos/600/400?5", quote:"Giọt nước kiên nhẫn xuyên thủng cả tảng đá.", author:"— Nước", weight:10},
-      {img:"https://picsum.photos/600/400?6", quote:"Mưa đến để rửa sạch bụi trần và mang theo sự sống mới.", author:"— Mưa", weight:10},
-      {img:"https://picsum.photos/600/400?7", quote:"Hoa nở rồi sẽ tàn, nhưng mùa xuân luôn quay lại.", author:"— Hoa", weight:10},
-      {img:"https://picsum.photos/600/400?8", quote:"Ngọn núi dạy ta sự kiên định.", author:"— Núi", weight:10},
-      {img:"https://picsum.photos/600/400?9", quote:"Biển rộng bao la, nhưng bắt đầu từ những con suối nhỏ.", author:"— Biển", weight:10},
-      {img:"https://picsum.photos/600/400?10", quote:"Gió vô hình nhưng ai cũng cảm nhận được.", author:"— Gió", weight:10},
-      {img:"https://picsum.photos/600/400?11", quote:"Mặt trăng không tự sáng, nhưng vẫn soi sáng màn đêm.", author:"— Trăng", weight:10},
-      {img:"https://picsum.photos/600/400?12", quote:"Sỏi đá trong sông nhẵn bóng vì dòng nước kiên trì.", author:"— Đá", weight:10},
-      {img:"https://picsum.photos/600/400?13", quote:"Đất mẹ luôn im lặng, nhưng nuôi dưỡng vạn vật.", author:"— Đất", weight:10},
-      {img:"https://picsum.photos/600/400?14", quote:"Cầu vồng chỉ xuất hiện sau cơn mưa.", author:"— Cầu vồng", weight:10},
-      {img:"https://picsum.photos/600/400?15", quote:"Hoa sen mọc từ bùn, nhưng luôn thanh khiết.", author:"— Sen", weight:10},
-      {img:"https://picsum.photos/600/400?16", quote:"Con ong chăm chỉ góp mật ngọt từ hoa.", author:"— Ong", weight:10},
-      {img:"https://picsum.photos/600/400?17", quote:"Tre uốn cong trước gió nhưng không bao giờ gãy.", author:"— Tre", weight:10},
-      {img:"https://picsum.photos/600/400?18", quote:"Đêm tối không thể che giấu được bình minh.", author:"— Bình minh", weight:10},
-      {img:"https://picsum.photos/600/400?19", quote:"Suối nhỏ róc rách vẫn có thể nuôi dưỡng rừng già.", author:"— Suối", weight:10},
-      {img:"https://picsum.photos/600/400?20", quote:"Hạt mưa có thể nhỏ bé, nhưng góp lại thành đại dương.", author:"— Mưa", weight:10},
-      {img:"https://picsum.photos/600/400?21", quote:"Rễ cây ẩn mình dưới đất, nhưng chính là sức mạnh của cả thân cây.", author:"— Rễ", weight:10},
-      {img:"https://picsum.photos/600/400?22", quote:"Ngọn gió đổi hướng, nhưng cây vẫn đứng vững.", author:"— Cây", weight:10},
-      {img:"https://picsum.photos/600/400?23", quote:"Ánh sáng xuyên qua tán lá, như hy vọng xuyên qua khó khăn.", author:"— Ánh sáng", weight:10},
-      {img:"https://picsum.photos/600/400?24", quote:"Hạt cát bé nhỏ góp phần tạo nên bãi biển mênh mông.", author:"— Cát", weight:10},
-      {img:"https://picsum.photos/600/400?25", quote:"Hoa dại vẫn nở dù không ai ngắm nhìn.", author:"— Hoa dại", weight:10},
-      {img:"https://picsum.photos/600/400?26", quote:"Trái đất xoay quanh mặt trời, nhưng mặt trời không bao giờ kiêu ngạo.", author:"— Trái đất", weight:10},
-      {img:"https://picsum.photos/600/400?27", quote:"Đêm tối làm cho ánh sáng của ngôi sao thêm rực rỡ.", author:"— Sao", weight:10},
-      {img:"https://picsum.photos/600/400?28", quote:"Ngọn lửa nhỏ có thể sưởi ấm cả trái tim lạnh giá.", author:"— Lửa", weight:10},
-      {img:"https://picsum.photos/600/400?29", quote:"Đám mây có thể che nắng, nhưng không thể che bầu trời.", author:"— Mây", weight:10},
-      {img:"https://picsum.photos/600/400?30", quote:"Mỗi mùa đều mang một vẻ đẹp riêng.", author:"— Bốn mùa", weight:10},
-      {img:"https://picsum.photos/600/400?31", quote:"Tiếng chim hót báo hiệu ngày mới an lành.", author:"— Chim", weight:10},
-      {img:"https://picsum.photos/600/400?32", quote:"Cây cổ thụ đứng vững vì đã trải qua bao giông bão.", author:"— Cây", weight:10},
-      {img:"https://picsum.photos/600/400?33", quote:"Ngọn núi cao không tự phụ, mà lặng lẽ đứng nhìn thời gian.", author:"— Núi", weight:10},
-      {img:"https://picsum.photos/600/400?34", quote:"Dòng sông ôm trọn mọi con suối, như trái tim bao dung ôm trọn lỗi lầm.", author:"— Sông", weight:10},
-      {img:"https://picsum.photos/600/400?35", quote:"Bình yên là khi ngồi bên tách cà phê, nghe lá rơi.", author:"— Lá", weight:10},
-      {img:"https://picsum.photos/600/400?36", quote:"Mặt trời lặn không phải kết thúc, mà là chuẩn bị cho bình minh.", author:"— Hoàng hôn", weight:10},
-      {img:"https://picsum.photos/600/400?37", quote:"Giọt sương sớm long lanh như hy vọng đầu ngày.", author:"— Sương", weight:10},
-      {img:"https://picsum.photos/600/400?38", quote:"Thiên nhiên luôn dạy ta biết chờ đợi.", author:"— Thiên nhiên", weight:10},
-      {img:"https://picsum.photos/600/400?39", quote:"Con sóng vỗ bờ rồi tan, nhưng biển chẳng bao giờ cạn.", author:"— Sóng", weight:10},
-      {img:"https://picsum.photos/600/400?40", quote:"Gió thổi qua rừng mang đi hương hoa cỏ dại.", author:"— Rừng", weight:10},
-      {img:"https://picsum.photos/600/400?41", quote:"Trời xanh vẫn ở đó, chỉ cần ta ngẩng lên.", author:"— Trời xanh", weight:10},
-      {img:"https://picsum.photos/600/400?42", quote:"Mỗi nhành cây đều vươn lên tìm ánh sáng.", author:"— Cây non", weight:10},
-      {img:"https://picsum.photos/600/400?43", quote:"Mặt hồ tĩnh lặng phản chiếu bầu trời trong.", author:"— Hồ", weight:10},
-      {img:"https://picsum.photos/600/400?44", quote:"Mỗi bước chân trên cát đều để lại dấu vết, như cuộc đời.", author:"— Cát biển", weight:10},
-      {img:"https://picsum.photos/600/400?45", quote:"Ngọn gió mang đi hạt giống gieo mầm sự sống.", author:"— Gió", weight:10},
-      {img:"https://picsum.photos/600/400?46", quote:"Trái chín không vội vàng, mà chờ đúng mùa.", author:"— Trái cây", weight:10},
-      {img:"https://picsum.photos/600/400?47", quote:"Thiên nhiên chữa lành những gì con người đánh mất.", author:"— Chữa lành", weight:10},
-      {img:"https://picsum.photos/600/400?48", quote:"Sự im lặng của rừng sâu chứa cả ngàn lời dạy.", author:"— Rừng", weight:10},
-      {img:"https://picsum.photos/600/400?49", quote:"Mỗi giọt sương rơi đều góp phần nuôi dưỡng sự sống.", author:"— Sương mai", weight:10},
-      {img:"https://picsum.photos/600/400?50", quote:"Bình yên đến từ việc hòa mình vào thiên nhiên.", author:"— Bình yên", weight:10},
-      {img:"https://picsum.photos/600/400?free", quote:"🎉 FREE your coffee today!", author:"— May mắn", weight:1}
+      {img:"https://picsum.photos/600/400?1", quote:"Dòng sông dạy ta sự kiên nhẫn: cứ chảy, rồi sẽ đến biển.", author:"— Triết lý thiên nhiên"},
+      {img:"https://picsum.photos/600/400?2", quote:"Ngọn núi không bao giờ vội vã, nhưng vẫn chạm đến trời cao.", author:"— Bài học từ núi"},
+      {img:"https://picsum.photos/600/400?3", quote:"Hoa chỉ nở khi đến mùa, con người cũng cần thời điểm để tỏa sáng.", author:"— Mùa hoa"},
+      {img:"https://picsum.photos/600/400?4", quote:"Cây đứng vững vì có rễ sâu, người mạnh mẽ vì có nền tảng.", author:"— Cội nguồn"},
+      {img:"https://picsum.photos/600/400?5", quote:"Mặt trời mọc mỗi ngày để nhắc nhở: luôn có một khởi đầu mới.", author:"— Bình minh"},
+      {img:"https://picsum.photos/600/400?6", quote:"Giọt sương nhỏ bé cũng phản chiếu cả bầu trời.", author:"— Khiêm nhường"},
+      {img:"https://picsum.photos/600/400?7", quote:"Biển rộng vì biết đón nhận mọi dòng chảy.", author:"— Lòng bao dung"},
+      {img:"https://picsum.photos/600/400?8", quote:"Gió không nhìn thấy nhưng ta cảm nhận được, như tình thương.", author:"— Vô hình hữu cảm"},
+      {img:"https://picsum.photos/600/400?9", quote:"Hạt giống trong đất tối vẫn ươm mầm cho ngày mai.", author:"— Hy vọng"},
+      {img:"https://picsum.photos/600/400?10", quote:"Con suối nhỏ vẫn có thể làm mát cả cánh rừng.", author:"— Sức mạnh thầm lặng"},
+      {img:"https://picsum.photos/600/400?11", quote:"Trăng không tranh sáng với ai, nhưng vẫn tỏa rạng giữa trời.", author:"— Sự tĩnh lặng"},
+      {img:"https://picsum.photos/600/400?12", quote:"Mỗi chiếc lá rơi là một lời nhắc về sự vô thường.", author:"— Triết lý lá"},
+      {img:"https://picsum.photos/600/400?13", quote:"Cát dù nhỏ bé, nhưng góp lại thành sa mạc mênh mông.", author:"— Sức mạnh tập thể"},
+      {img:"https://picsum.photos/600/400?14", quote:"Cầu vồng chỉ hiện sau mưa, hạnh phúc cũng thế.", author:"— Sau cơn bão"},
+      {img:"https://picsum.photos/600/400?15", quote:"Tiếng chim hót buổi sớm là lời chào ngày mới.", author:"— Khởi đầu an lành"},
+      {img:"https://picsum.photos/600/400?16", quote:"Mưa nuôi đất, đất nuôi cây, cây nuôi người.", author:"— Vòng tuần hoàn"},
+      {img:"https://picsum.photos/600/400?17", quote:"Rừng sâu dạy ta biết lắng nghe sự im lặng.", author:"— Tĩnh tại"},
+      {img:"https://picsum.photos/600/400?18", quote:"Đá cuội nhẵn dần vì nước kiên trì chảy qua.", author:"— Bền bỉ"},
+      {img:"https://picsum.photos/600/400?19", quote:"Sóng biển không ngừng vỗ, như nhịp tim của Trái Đất.", author:"— Vĩnh cửu"},
+      {img:"https://picsum.photos/600/400?20", quote:"Ánh sao nhỏ cũng góp phần làm sáng bầu trời.", author:"— Khiêm tốn"},
+      {img:"https://picsum.photos/600/400?21", quote:"Mùa đông lạnh giá để ta biết quý trọng mùa xuân.", author:"— Sự đối lập"},
+      {img:"https://picsum.photos/600/400?22", quote:"Đất cằn cỗi vẫn nuôi được hoa xương rồng.", author:"— Ý chí"},
+      {img:"https://picsum.photos/600/400?23", quote:"Nắng chiều nhắc ta về vẻ đẹp của sự tàn phai.", author:"— Chiều tà"},
+      {img:"https://picsum.photos/600/400?24", quote:"Mỗi cơn gió mang đi một nỗi buồn.", author:"— Buông bỏ"},
+      {img:"https://picsum.photos/600/400?25", quote:"Rễ cây tìm nước trong lòng đất, như con người tìm tri thức.", author:"— Hành trình"},
+      {img:"https://picsum.photos/600/400?26", quote:"Đêm tối không che giấu được ánh sáng của đom đóm.", author:"— Hy vọng nhỏ bé"},
+      {img:"https://picsum.photos/600/400?27", quote:"Trời mưa, lá vẫn xanh.", author:"— Niềm tin"},
+      {img:"https://picsum.photos/600/400?28", quote:"Cánh đồng lúa trĩu hạt vì biết cúi đầu.", author:"— Khiêm nhường"},
+      {img:"https://picsum.photos/600/400?29", quote:"Ngọn lửa nhỏ có thể thắp sáng đêm dài.", author:"— Niềm tin"},
+      {img:"https://picsum.photos/600/400?30", quote:"Đường xa mới biết sức ngựa, thời gian mới biết lòng người.", author:"— Trường kỳ"},
+      {img:"https://picsum.photos/600/400?31", quote:"Hoa sen nở từ bùn, như con người trưởng thành từ khó khăn.", author:"— Thanh khiết"},
+      {img:"https://picsum.photos/600/400?32", quote:"Mỗi vì sao là một giấc mơ treo trên trời.", author:"— Ước mơ"},
+      {img:"https://picsum.photos/600/400?33", quote:"Núi cao không che mất mặt trời, gian nan không che mất hi vọng.", author:"— Vững vàng"},
+      {img:"https://picsum.photos/600/400?34", quote:"Sông sâu vẫn chảy êm đềm, người sâu sắc thường ít lời.", author:"— Trí tuệ"},
+      {img:"https://picsum.photos/600/400?35", quote:"Cây cổ thụ bóng mát từ hàng trăm năm kiên trì.", author:"— Thời gian"},
+      {img:"https://picsum.photos/600/400?36", quote:"Cỏ dại vẫn xanh tươi dưới chân người.", author:"— Bình dị"},
+      {img:"https://picsum.photos/600/400?37", quote:"Nước lặng soi gương, tâm tĩnh soi lòng.", author:"— Thiền định"},
+      {img:"https://picsum.photos/600/400?38", quote:"Sương mù che lối, nhưng mặt trời vẫn ở đó.", author:"— Lạc quan"},
+      {img:"https://picsum.photos/600/400?39", quote:"Cầu đá cũ vẫn đưa người qua sông.", author:"— Giá trị bền lâu"},
+      {img:"https://picsum.photos/600/400?40", quote:"Mỗi bông tuyết mang một hình dáng riêng biệt.", author:"— Cá tính"},
+      {img:"https://picsum.photos/600/400?41", quote:"Tre gãy ngọn vẫn mọc chồi mới.", author:"— Sức sống"},
+      {img:"https://picsum.photos/600/400?42", quote:"Trăng khuyết để nhắc rằng chưa trọn cũng vẫn đẹp.", author:"— Chấp nhận"},
+      {img:"https://picsum.photos/600/400?43", quote:"Tiếng suối róc rách là bài ca muôn thuở.", author:"— Niềm vui giản đơn"},
+      {img:"https://picsum.photos/600/400?44", quote:"Mùa hè nắng gắt mới hiểu giá trị bóng râm.", author:"— Biết ơn"},
+      {img:"https://picsum.photos/600/400?45", quote:"Thác nước mạnh mẽ vì không sợ rơi xuống.", author:"— Can đảm"},
+      {img:"https://picsum.photos/600/400?46", quote:"Mặt hồ phẳng lặng phản chiếu cả bầu trời rộng lớn.", author:"— Tâm rộng"},
+      {img:"https://picsum.photos/600/400?47", quote:"Người đi rừng biết sợ hổ, người sống đời biết sợ lòng tham.", author:"— Cảnh tỉnh"},
+      {img:"https://picsum.photos/600/400?48", quote:"Hoa dại ven đường vẫn khoe sắc mà không cần ai ngắm.", author:"— Tự tại"},
+      {img:"https://picsum.photos/600/400?49", quote:"Sấm sét dữ dội rồi cũng qua, mây lại hồng.", author:"— Vô thường"},
+      {img:"https://picsum.photos/600/400?50", quote:"🎉 FREE your coffee today!", author:"— May mắn đặc biệt"}
     ];
 
-    function weightedRandom(items){
-      let total = items.reduce((sum,it)=>sum+it.weight,0);
-      let r = Math.random() * total;
-      let acc = 0;
-      for (let it of items){
-        acc += it.weight;
-        if (r < acc) return it;
-      }
+    function showRandom(){
+      const pick = items[Math.floor(Math.random() * items.length)];
+      document.getElementById("heroImg").src = pick.img;
+      document.getElementById("quoteText").textContent = pick.quote;
+      document.getElementById("authorText").textContent = pick.author;
     }
 
-    function showRandom(){
-      const it = weightedRandom(items);
-      document.getElementById('heroImg').src = it.img;
-      document.getElementById('quoteText').textContent = it.quote;
-      document.getElementById('authorText').textContent = it.author;
-    }
-    showRandom();
+    window.onload = showRandom;
   </script>
 </body>
 </html>
