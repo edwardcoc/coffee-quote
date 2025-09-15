@@ -1,71 +1,84 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="vi">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.6">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  <meta charset="utf-8">
+  <title>QR Coffee Quotes</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding: 30px;
+      background: #f4f4f4;
+    }
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 500px;
+      margin: auto;
+      box-shadow: 0 6px 16px rgba(0,0,0,.15);
+    }
+    img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin-bottom: 16px;
+    }
+    .quote {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .author {
+      color: #666;
+      margin-bottom: 12px;
+    }
+    button {
+      padding: 10px 16px;
+      border: none;
+      border-radius: 8px;
+      background: #0077cc;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #005fa3;
+    }
   </style>
 </head>
 <body>
-<p class="p1">&lt;!doctype html&gt;</p>
-<p class="p1">&lt;html lang="vi"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta charset="utf-8" /&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;QR Coffee Quotes&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>body {font-family: sans-serif; text-align: center; padding: 30px; background: #f4f4f4;}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.card {background: white; padding: 20px; border-radius: 12px; max-width: 500px; margin: auto; box-shadow: 0 6px 16px rgba(0,0,0,.15);}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>img {max-width: 100%; border-radius: 8px; margin-bottom: 16px;}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.quote {font-size: 20px; font-weight: 600; margin-bottom: 8px;}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.author {color: #666; margin-bottom: 12px;}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>button {padding: 10px 16px; border: none; border-radius: 6px; background: #0077cc; color: white; cursor: pointer;}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>button:hover {background: #005fa3;}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;img id="heroImg" src="" alt=""&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;p class="quote" id="quoteText"&gt;...&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;p class="author" id="authorText"&gt;&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;button onclick="showRandom()"&gt;Đổi thông điệp&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;script&gt;</p>
-<p class="p1">const items = [</p>
-<p class="p1"><span class="Apple-converted-space">  </span>{img:"https://picsum.photos/600/400?1", quote:"Hãy bắt đầu ngày mới bằng nụ cười.", author:"— Sáng sớm", weight:10},</p>
-<p class="p1"><span class="Apple-converted-space">  </span>{img:"https://picsum.photos/600/400?2", quote:"Mỗi ngụm cà phê là một ngụm năng lượng.", author:"— Cà phê", weight:10},</p>
-<p class="p1"><span class="Apple-converted-space">  </span>{img:"https://picsum.photos/600/400?3", quote:"Hít sâu, thở chậm, và tiếp tục.", author:"— Bình yên", weight:10},</p>
-<p class="p1"><span class="Apple-converted-space">  </span>{img:"https://picsum.photos/600/400?4", quote:"Ngày hôm nay là một món quà.", author:"— Tặng bạn", weight:10},</p>
-<p class="p1"><span class="Apple-converted-space">  </span>// ... bạn có thể thêm 25 item thường nữa ở đây ...</p>
-<p class="p1"><span class="Apple-converted-space">  </span>{img:"https://picsum.photos/600/400?free", quote:"🎉 FREE your coffee today!", author:"— May mắn", weight:1}</p>
-<p class="p1">];</p>
-<p class="p2"><br></p>
-<p class="p1">function weightedRandom(items){</p>
-<p class="p1"><span class="Apple-converted-space">  </span>let total = items.reduce((sum,it)=&gt;sum+it.weight,0);</p>
-<p class="p1"><span class="Apple-converted-space">  </span>let r = Math.random() * total;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>let acc = 0;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>for(let it of items){</p>
-<p class="p1"><span class="Apple-converted-space">    </span>acc += it.weight;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>if(r &lt; acc) return it;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">function showRandom(){</p>
-<p class="p1"><span class="Apple-converted-space">  </span>const it = weightedRandom(items);</p>
-<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById('heroImg').src = it.img;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById('quoteText').textContent = it.quote;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById('authorText').textContent = it.author;</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">// load ngẫu nhiên khi mở</p>
-<p class="p1">showRandom();</p>
-<p class="p1">&lt;/script&gt;</p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+  <div class="card">
+    <img id="heroImg" src="" alt="">
+    <p class="quote" id="quoteText">...</p>
+    <p class="author" id="authorText">...</p>
+    <button onclick="showRandom()">Đổi thông điệp</button>
+  </div>
+
+  <script>
+    const items = [
+      {img:"https://picsum.photos/600/400?1", quote:"Hãy bắt đầu ngày mới bằng nụ cười.", author:"— Sáng sớm", weight:10},
+      {img:"https://picsum.photos/600/400?2", quote:"Mỗi ngụm cà phê là một ngụm năng lượng.", author:"— Cà phê", weight:10},
+      {img:"https://picsum.photos/600/400?3", quote:"Hít sâu, thở chậm, và tiếp tục.", author:"— Bình yên", weight:10},
+      {img:"https://picsum.photos/600/400?4", quote:"Ngày hôm nay là một món quà.", author:"— Tặng bạn", weight:10},
+      {img:"https://picsum.photos/600/400?free", quote:"🎉 FREE your coffee today!", author:"— May mắn", weight:1}
+    ];
+
+    function weightedRandom(items){
+      let total = items.reduce((sum,it)=>sum+it.weight,0);
+      let r = Math.random() * total;
+      let acc = 0;
+      for (let it of items){
+        acc += it.weight;
+        if (r < acc) return it;
+      }
+    }
+
+    function showRandom(){
+      const it = weightedRandom(items);
+      document.getElementById('heroImg').src = it.img;
+      document.getElementById('quoteText').textContent = it.quote;
+      document.getElementById('authorText').textContent = it.author;
+    }
+    showRandom();
+  </script>
 </body>
 </html>
