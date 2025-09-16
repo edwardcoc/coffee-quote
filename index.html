@@ -1,105 +1,101 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <title>QR Coffee Quotes</title>
   <style>
     body {
       font-family: sans-serif;
-      text-align: center;
-      padding: 30px;
-      background: #f4f4f4;
+      background-color: #f4fdf9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
     }
     .card {
       background: white;
       padding: 20px;
       border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      text-align: center;
       max-width: 500px;
-      margin: auto;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-    }
-    img.quote-img {
-      max-width: 100%;
-      border-radius: 8px;
-      margin-bottom: 16px;
     }
     .quote {
-      font-size: 20px;
-      font-weight: 600;
-      margin: 16px 0;
+      font-size: 1.2em;
+      margin-bottom: 15px;
+      font-weight: bold;
     }
     .logo {
-      max-width: 100px;
-      margin-top: 20px;
+      width: 100px;
+      margin-top: 15px;
     }
   </style>
 </head>
 <body>
   <div class="card">
-    <img id="heroImg" class="quote-img" src="" alt="Image">
-    <p class="quote" id="quoteText"></p>
-    <img src="z6581485028709_c060ffada3bff5ef997da777cd048744.jpg" alt="Logo" class="logo">
+    <p id="quote" class="quote"></p>
+    <img src="logo.jpg" alt="Logo" class="logo">
   </div>
 
   <script>
-    const items = [
-      {quote: "Một hạt giống không bao giờ vội vã để trở thành một cái cây."},
-      {quote: "Sự thay đổi của một dòng sông không bao giờ ngừng nghỉ, dù bạn có nhìn thấy nó hay không."},
-      {quote: "Một ngọn núi không bao giờ phải chứng minh sự vĩ đại của nó."},
-      {quote: "Nước bào mòn đá không phải vì sức mạnh, mà vì sự kiên trì."},
-      {quote: "Hãy học cách kiên nhẫn từ một cái cây đang chờ đợi mùa xuân của nó."},
-      {quote: "Mỗi chiếc lá rụng đều dạy ta bài học về sự buông bỏ."},
-      {quote: "Chúng ta không phải là một phần của thiên nhiên, chúng ta chính là thiên nhiên."},
-      {quote: "Chẳng có chiếc lá nào đứng một mình trên cây."},
-      {quote: "Gió không chỉ thổi qua một cái cây, mà thổi qua cả khu rừng."},
-      {quote: "Giống như mặt trăng, cuộc đời chúng ta cũng có những lúc đầy và khuyết."},
-      {quote: "Một hạt cát trong sa mạc cũng là một phần của vũ trụ."},
-      {quote: "Sự sống của bầy chim không chỉ nằm trong mỗi con chim, mà còn nằm trong sự chuyển động của cả bầy."},
-      {quote: "Mọi thứ trở lại với cát bụi. Đó là vòng tuần hoàn, không phải là sự kết thúc."},
-      {quote: "Một bông hoa hoang dã không cần ai khen ngợi để nở rộ."},
-      {quote: "Thiên nhiên không bao giờ vội vã, nhưng mọi thứ đều được hoàn thành."},
-      {quote: "Học cách sống như một cái cây, để mỗi mùa trôi qua đều có giá trị của riêng nó."},
-      {quote: "Vẻ đẹp của một khu rừng nằm ở sự đa dạng của nó, không phải ở sự đồng nhất."},
-      {quote: "Khi bạn nhìn vào một cái cây, bạn thấy sự tĩnh lặng. Khi bạn nhìn vào một con sông, bạn thấy sự chuyển động."},
-      {quote: "Đừng cố gắng thay đổi dòng sông, hãy học cách hòa mình vào dòng chảy của nó."},
-      {quote: "Chỉ khi bạn lặng im, bạn mới nghe thấy tiếng thì thầm của một bông hoa."},
-      {quote: "Một bông hoa đơn giản cũng có thể làm bạn mỉm cười."},
-      {quote: "Sự sống và cái chết không phải là hai mặt đối lập, mà là hai mặt của cùng một đồng xu."},
-      {quote: "Giống như một mùa đông, những khó khăn sẽ giúp ta mạnh mẽ hơn để đón chờ mùa xuân."},
-      {quote: "Con sâu bướm phải chết đi để hóa thành bướm."},
-      {quote: "Một hạt giống phải nứt ra để mầm sống trỗi dậy."},
-      {quote: "Hãy nhìn vào một cái cây rụng lá, nó không chết, nó đang chuẩn bị cho sự tái sinh."},
-      {quote: "Một chiếc lá vàng không níu kéo cành cây."},
-      {quote: "Chỉ khi cơn bão qua đi, bầu trời mới hiện ra rõ ràng."},
-      {quote: "Hãy làm một hạt mưa rơi xuống, chấp nhận tan biến để nuôi dưỡng mặt đất."},
-      {quote: "Biển không bao giờ chống lại những con sóng, nó chỉ hòa mình vào chúng."},
-      {quote: "Thiên nhiên không giấu giếm vết sẹo của nó. Mỗi vết sẹo đều kể một câu chuyện."},
-      {quote: "Một bông hoa khi nở không cần biết nó sẽ tàn lúc nào."},
-      {quote: "Bạn không thể lắng nghe trái tim mình khi đang la hét với một ngọn thác."},
-      {quote: "Hãy tìm thấy bản thân trong rừng, nơi bạn có thể lạc lối."},
-      {quote: "Ánh sáng mặt trời không chọn nơi để chiếu rọi."},
-      {quote: "Hãy làm một bông hoa, không cố gắng trở thành một bông hoa khác."},
-      {quote: "Hành trình của một con sông không phải là để đến biển, mà để trải nghiệm dòng chảy của chính nó."},
-      {quote: "Một khu rừng có thể tối tăm nhưng đó là nơi chứa đựng nhiều sự sống nhất."},
-      {quote: "Cái cây không lớn lên mãi mãi, nó phải biết khi nào thì dừng lại."},
-      {quote: "Mặt trời mọc rồi lặn, không có điều gì là vĩnh cửu."},
-      {quote: "Cơn mưa không chỉ làm ướt đường, mà còn nuôi dưỡng những hạt mầm."},
-      {quote: "Cái cây cao nhất cũng bắt đầu từ một hạt mầm bé nhỏ."},
-      {quote: "Mỗi vết nứt trên đá đều là nơi để ánh sáng len lỏi vào."},
-      {quote: "Một khu vườn không chỉ có hoa, mà còn có cỏ dại."},
-      {quote: "Học cách sống như nước: mềm mại nhưng có thể đi đến mọi nơi."},
-      {quote: "Mặt trời làm khô nước, nhưng mặt trăng lại làm nó dâng lên."},
-      {quote: "Thiên nhiên không phán xét, nó chỉ đơn giản là."},
-      {quote: "Nếu bạn muốn hiểu bản thân, hãy quan sát thiên nhiên."},
-      {quote: "Hãy nhớ rằng, sau mùa đông lạnh giá, một bông hoa sẽ nở rộ."},
-      {quote: "Thiên nhiên luôn đúng, còn chúng ta thì không."},
-      {quote: "☕ Enjoy your free coffee today!"}
+    const quotes = [
+      "Một hạt giống không bao giờ vội vã để trở thành một cái cây.",
+      "Sự thay đổi của một dòng sông không bao giờ ngừng nghỉ, dù bạn có nhìn thấy nó hay không.",
+      "Một ngọn núi không bao giờ phải chứng minh sự vĩ đại của nó.",
+      "Nước bào mòn đá không phải vì sức mạnh, mà vì sự kiên trì.",
+      "Hãy học cách kiên nhẫn từ một cái cây đang chờ đợi mùa xuân của nó.",
+      "Mỗi chiếc lá rụng đều dạy ta bài học về sự buông bỏ.",
+      "Chúng ta không phải là một phần của thiên nhiên, chúng ta chính là thiên nhiên.",
+      "Chẳng có chiếc lá nào đứng một mình trên cây.",
+      "Gió không chỉ thổi qua một cái cây, mà thổi qua cả khu rừng.",
+      "Giống như mặt trăng, cuộc đời chúng ta cũng có những lúc đầy và khuyết.",
+      "Một hạt cát trong sa mạc cũng là một phần của vũ trụ.",
+      "Sự sống của bầy chim không chỉ nằm trong mỗi con chim, mà còn nằm trong sự chuyển động của cả bầy.",
+      "Mọi thứ trở lại với cát bụi. Đó là vòng tuần hoàn, không phải là sự kết thúc.",
+      "Một bông hoa hoang dã không cần ai khen ngợi để nở rộ.",
+      "Thiên nhiên không bao giờ vội vã, nhưng mọi thứ đều được hoàn thành.",
+      "Học cách sống như một cái cây, để mỗi mùa trôi qua đều có giá trị của riêng nó.",
+      "Vẻ đẹp của một khu rừng nằm ở sự đa dạng của nó, không phải ở sự đồng nhất.",
+      "Khi bạn nhìn vào một cái cây, bạn thấy sự tĩnh lặng. Khi bạn nhìn vào một con sông, bạn thấy sự chuyển động.",
+      "Đừng cố gắng thay đổi dòng sông, hãy học cách hòa mình vào dòng chảy của nó.",
+      "Chỉ khi bạn lặng im, bạn mới nghe thấy tiếng thì thầm của một bông hoa.",
+      "Một bông hoa đơn giản cũng có thể làm bạn mỉm cười.",
+      "Sự sống và cái chết không phải là hai mặt đối lập, mà là hai mặt của cùng một đồng xu.",
+      "Giống như một mùa đông, những khó khăn sẽ giúp ta mạnh mẽ hơn để đón chờ mùa xuân.",
+      "Con sâu bướm phải chết đi để hóa thành bướm.",
+      "Một hạt giống phải nứt ra để mầm sống trỗi dậy.",
+      "Hãy nhìn vào một cái cây rụng lá, nó không chết, nó đang chuẩn bị cho sự tái sinh.",
+      "Một chiếc lá vàng không níu kéo cành cây.",
+      "Chỉ khi cơn bão qua đi, bầu trời mới hiện ra rõ ràng.",
+      "Hãy làm một hạt mưa rơi xuống, chấp nhận tan biến để nuôi dưỡng mặt đất.",
+      "Biển không bao giờ chống lại những con sóng, nó chỉ hòa mình vào chúng.",
+      "Thiên nhiên không giấu giếm vết sẹo của nó. Mỗi vết sẹo đều kể một câu chuyện.",
+      "Một bông hoa khi nở không cần biết nó sẽ tàn lúc nào.",
+      "Bạn không thể lắng nghe trái tim mình khi đang la hét với một ngọn thác.",
+      "Hãy tìm thấy bản thân trong rừng, nơi bạn có thể lạc lối.",
+      "Ánh sáng mặt trời không chọn nơi để chiếu rọi.",
+      "Hãy làm một bông hoa, không cố gắng trở thành một bông hoa khác.",
+      "Hành trình của một con sông không phải là để đến biển, mà để trải nghiệm dòng chảy của chính nó.",
+      "Một khu rừng có thể tối tăm nhưng đó là nơi chứa đựng nhiều sự sống nhất.",
+      "Cái cây không lớn lên mãi mãi, nó phải biết khi nào thì dừng lại.",
+      "Mặt trời mọc rồi lặn, không có điều gì là vĩnh cửu.",
+      "Cơn mưa không chỉ làm ướt đường, mà còn nuôi dưỡng những hạt mầm.",
+      "Cái cây cao nhất cũng bắt đầu từ một hạt mầm bé nhỏ.",
+      "Mỗi vết nứt trên đá đều là nơi để ánh sáng len lỏi vào.",
+      "Một khu vườn không chỉ có hoa, mà còn có cỏ dại. Cả hai đều là một phần của sự sống.",
+      "Học cách sống như nước: mềm mại nhưng có thể đi đến mọi nơi.",
+      "Mặt trời làm khô nước, nhưng mặt trăng lại làm nó dâng lên.",
+      "Thiên nhiên không phán xét, nó chỉ đơn giản là.",
+      "Nếu bạn muốn hiểu bản thân, hãy quan sát thiên nhiên.",
+      "Hãy nhớ rằng, sau mùa đông lạnh giá, một bông hoa sẽ nở rộ.",
+      "Thiên nhiên luôn đúng, còn chúng ta thì không.",
+      "Enjoy your free coffee today!"
     ];
 
-    // Chọn ngẫu nhiên 1 quote
-    const randomItem = items[Math.floor(Math.random() * items.length)];
-    document.getElementById('quoteText').textContent = randomItem.quote;
-    document.getElementById('heroImg').src = "https://picsum.photos/600/400?random=" + Math.floor(Math.random()*1000);
+    // chọn ngẫu nhiên 1 quote
+    const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+    document.getElementById("quote").textContent = randomQuote;
   </script>
 </body>
 </html>
