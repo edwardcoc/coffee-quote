@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
   <title>QR Coffee Quotes</title>
   <style>
     body {
@@ -18,7 +18,7 @@
       margin: auto;
       box-shadow: 0 6px 16px rgba(0,0,0,0.15);
     }
-    img.main {
+    img.quote-img {
       max-width: 100%;
       border-radius: 8px;
       margin-bottom: 16px;
@@ -26,82 +26,80 @@
     .quote {
       font-size: 20px;
       font-weight: 600;
-      margin-bottom: 16px;
+      margin: 16px 0;
     }
-    img.logo {
-      max-width: 120px;
+    .logo {
+      max-width: 100px;
       margin-top: 20px;
     }
   </style>
 </head>
 <body>
   <div class="card">
-    <img id="heroImg" class="main" src="" alt="">
+    <img id="heroImg" class="quote-img" src="" alt="Image">
     <p class="quote" id="quoteText"></p>
-    <img src="logo.jpg" class="logo" alt="Logo">
+    <img src="z6581485028709_c060ffada3bff5ef997da777cd048744.jpg" alt="Logo" class="logo">
   </div>
 
   <script>
     const items = [
-      {img:"https://picsum.photos/600/400?1", quote:"Mỗi bình minh là một cơ hội mới để bắt đầu lại."},
-      {img:"https://picsum.photos/600/400?2", quote:"Ánh sáng mặt trời len qua kẽ lá nhắc ta rằng sự sống luôn hồi sinh."},
-      {img:"https://picsum.photos/600/400?3", quote:"Buổi sáng thiên nhiên yên tĩnh, cũng là lúc tâm hồn ta lắng dịu."},
-      {img:"https://picsum.photos/600/400?4", quote:"Cỏ cây lớn lên nhờ sương sớm, con người lớn lên nhờ hy vọng."},
-      {img:"https://picsum.photos/600/400?5", quote:"Bình minh không hứa hẹn điều gì, nhưng luôn mang lại niềm tin."},
-      {img:"https://picsum.photos/600/400?6", quote:"Hãy để thiên nhiên đánh thức bạn bằng tiếng chim và ánh sáng mới."},
-      {img:"https://picsum.photos/600/400?7", quote:"Một ngày đẹp trời bắt đầu từ khoảnh khắc bạn biết ơn sự sống."},
-      {img:"https://picsum.photos/600/400?8", quote:"Mặt trời lên, bóng tối lùi xa – đó là bản chất của sự tích cực."},
-      {img:"https://picsum.photos/600/400?9", quote:"Thiên nhiên chẳng vội vàng, nhưng mọi thứ đều hoàn thành."},
-      {img:"https://picsum.photos/600/400?10", quote:"Mỗi buổi sáng là một món quà – hãy mở nó bằng nụ cười."},
-      {img:"https://picsum.photos/600/400?11", quote:"Tiếng chim hót buổi sớm là bản nhạc tự nhiên của niềm vui."},
-      {img:"https://picsum.photos/600/400?12", quote:"Hãy uống ánh sáng ban mai như uống một tách cà phê tích cực."},
-      {img:"https://picsum.photos/600/400?13", quote:"Mặt trời mọc là lời nhắc: dù đêm có dài, ngày mới luôn tới."},
-      {img:"https://picsum.photos/600/400?14", quote:"Đứng trước thiên nhiên, ta học cách khiêm nhường và kiên nhẫn."},
-      {img:"https://picsum.photos/600/400?15", quote:"Những tia nắng đầu ngày luôn mang theo hy vọng mới."},
-      {img:"https://picsum.photos/600/400?16", quote:"Hãy để gió sáng thổi bay muộn phiền hôm qua."},
-      {img:"https://picsum.photos/600/400?17", quote:"Bình minh là khởi đầu, không phải sự tiếp nối."},
-      {img:"https://picsum.photos/600/400?18", quote:"Thiên nhiên tái sinh mỗi sáng, con người cũng vậy."},
-      {img:"https://picsum.photos/600/400?19", quote:"Cây vươn mình về phía ánh sáng, con người vươn tới ước mơ."},
-      {img:"https://picsum.photos/600/400?20", quote:"Mỗi chiếc lá sáng nay đều thì thầm về sự sống."},
-      {img:"https://picsum.photos/600/400?21", quote:"Hãy mỉm cười như mặt trời, để cả ngày bừng sáng."},
-      {img:"https://picsum.photos/600/400?22", quote:"Nắng sớm làm khô giọt sương, như niềm tin xua tan lo âu."},
-      {img:"https://picsum.photos/600/400?23", quote:"Thiên nhiên dịu dàng, cũng như lòng người cần sự tĩnh lặng."},
-      {img:"https://picsum.photos/600/400?24", quote:"Gió sáng mang đến hơi thở mới cho trái tim bạn."},
-      {img:"https://picsum.photos/600/400?25", quote:"Sự sống bắt đầu từ ánh sáng và một tâm hồn rộng mở."},
-      {img:"https://picsum.photos/600/400?26", quote:"Ngày mới là một tờ giấy trắng – hãy vẽ nụ cười lên đó."},
-      {img:"https://picsum.photos/600/400?27", quote:"Thiên nhiên dạy ta rằng: kiên nhẫn sẽ mang lại hoa trái."},
-      {img:"https://picsum.photos/600/400?28", quote:"Bình minh là nghệ thuật của bầu trời và hy vọng."},
-      {img:"https://picsum.photos/600/400?29", quote:"Hãy hít một hơi sâu, thiên nhiên đang gọi bạn sống thật chậm."},
-      {img:"https://picsum.photos/600/400?30", quote:"Ánh sáng ban mai là liều thuốc chữa lành trái tim mỏi mệt."},
-      {img:"https://picsum.photos/600/400?31", quote:"Cỏ cây không so sánh, chỉ lặng lẽ lớn lên dưới nắng sớm."},
-      {img:"https://picsum.photos/600/400?32", quote:"Mặt trời là chiếc đồng hồ thiên nhiên, luôn nhắc ta tiến bước."},
-      {img:"https://picsum.photos/600/400?33", quote:"Hãy để ánh sáng xuyên qua tâm hồn như nó xuyên qua hàng cây."},
-      {img:"https://picsum.photos/600/400?34", quote:"Sáng nay, hãy làm một điều nhỏ bé nhưng đầy ý nghĩa."},
-      {img:"https://picsum.photos/600/400?35", quote:"Hoa hướng dương không bao giờ quên nhìn về phía mặt trời."},
-      {img:"https://picsum.photos/600/400?36", quote:"Thiên nhiên ban tặng, con người biết ơn."},
-      {img:"https://picsum.photos/600/400?37", quote:"Mỗi bình minh là minh chứng rằng bạn vẫn còn cơ hội."},
-      {img:"https://picsum.photos/600/400?38", quote:"Đêm dài qua đi, sáng mới luôn công bằng với tất cả."},
-      {img:"https://picsum.photos/600/400?39", quote:"Thiên nhiên dịu êm, dạy ta biết kiên nhẫn và hy vọng."},
-      {img:"https://picsum.photos/600/400?40", quote:"Mặt trời mọc – cũng là lúc ta thức tỉnh ước mơ."},
-      {img:"https://picsum.photos/600/400?41", quote:"Ánh sáng là ngôn ngữ của thiên nhiên dành cho con người."},
-      {img:"https://picsum.photos/600/400?42", quote:"Sương mai tinh khiết như khởi đầu mới mẻ cho tâm hồn."},
-      {img:"https://picsum.photos/600/400?43", quote:"Mỗi sáng dậy, hãy biết ơn sự sống thêm một ngày."},
-      {img:"https://picsum.photos/600/400?44", quote:"Thiên nhiên không bao giờ thất hứa: sau đêm là ngày."},
-      {img:"https://picsum.photos/600/400?45", quote:"Buổi sáng mang lại sức mạnh, nếu ta mở lòng đón nhận."},
-      {img:"https://picsum.photos/600/400?46", quote:"Mặt trời không chờ đợi, ta cũng đừng chần chừ."},
-      {img:"https://picsum.photos/600/400?47", quote:"Một ngày tươi đẹp bắt đầu từ một suy nghĩ tích cực."},
-      {img:"https://picsum.photos/600/400?48", quote:"Hãy là ánh sáng nhỏ bé trong bình minh rộng lớn."},
-      {img:"https://picsum.photos/600/400?49", quote:"Thiên nhiên là giáo viên của sự cân bằng và bình yên."},
-      {img:"https://picsum.photos/600/400?50", quote:"Nắng mai vẽ nên bức tranh hy vọng cho cả ngày."},
-
-      // quote khuyến mãi
-      {img:"https://picsum.photos/600/400?free", quote:"☕ Enjoy your free coffee today!"}
+      {quote: "Một hạt giống không bao giờ vội vã để trở thành một cái cây."},
+      {quote: "Sự thay đổi của một dòng sông không bao giờ ngừng nghỉ, dù bạn có nhìn thấy nó hay không."},
+      {quote: "Một ngọn núi không bao giờ phải chứng minh sự vĩ đại của nó."},
+      {quote: "Nước bào mòn đá không phải vì sức mạnh, mà vì sự kiên trì."},
+      {quote: "Hãy học cách kiên nhẫn từ một cái cây đang chờ đợi mùa xuân của nó."},
+      {quote: "Mỗi chiếc lá rụng đều dạy ta bài học về sự buông bỏ."},
+      {quote: "Chúng ta không phải là một phần của thiên nhiên, chúng ta chính là thiên nhiên."},
+      {quote: "Chẳng có chiếc lá nào đứng một mình trên cây."},
+      {quote: "Gió không chỉ thổi qua một cái cây, mà thổi qua cả khu rừng."},
+      {quote: "Giống như mặt trăng, cuộc đời chúng ta cũng có những lúc đầy và khuyết."},
+      {quote: "Một hạt cát trong sa mạc cũng là một phần của vũ trụ."},
+      {quote: "Sự sống của bầy chim không chỉ nằm trong mỗi con chim, mà còn nằm trong sự chuyển động của cả bầy."},
+      {quote: "Mọi thứ trở lại với cát bụi. Đó là vòng tuần hoàn, không phải là sự kết thúc."},
+      {quote: "Một bông hoa hoang dã không cần ai khen ngợi để nở rộ."},
+      {quote: "Thiên nhiên không bao giờ vội vã, nhưng mọi thứ đều được hoàn thành."},
+      {quote: "Học cách sống như một cái cây, để mỗi mùa trôi qua đều có giá trị của riêng nó."},
+      {quote: "Vẻ đẹp của một khu rừng nằm ở sự đa dạng của nó, không phải ở sự đồng nhất."},
+      {quote: "Khi bạn nhìn vào một cái cây, bạn thấy sự tĩnh lặng. Khi bạn nhìn vào một con sông, bạn thấy sự chuyển động."},
+      {quote: "Đừng cố gắng thay đổi dòng sông, hãy học cách hòa mình vào dòng chảy của nó."},
+      {quote: "Chỉ khi bạn lặng im, bạn mới nghe thấy tiếng thì thầm của một bông hoa."},
+      {quote: "Một bông hoa đơn giản cũng có thể làm bạn mỉm cười."},
+      {quote: "Sự sống và cái chết không phải là hai mặt đối lập, mà là hai mặt của cùng một đồng xu."},
+      {quote: "Giống như một mùa đông, những khó khăn sẽ giúp ta mạnh mẽ hơn để đón chờ mùa xuân."},
+      {quote: "Con sâu bướm phải chết đi để hóa thành bướm."},
+      {quote: "Một hạt giống phải nứt ra để mầm sống trỗi dậy."},
+      {quote: "Hãy nhìn vào một cái cây rụng lá, nó không chết, nó đang chuẩn bị cho sự tái sinh."},
+      {quote: "Một chiếc lá vàng không níu kéo cành cây."},
+      {quote: "Chỉ khi cơn bão qua đi, bầu trời mới hiện ra rõ ràng."},
+      {quote: "Hãy làm một hạt mưa rơi xuống, chấp nhận tan biến để nuôi dưỡng mặt đất."},
+      {quote: "Biển không bao giờ chống lại những con sóng, nó chỉ hòa mình vào chúng."},
+      {quote: "Thiên nhiên không giấu giếm vết sẹo của nó. Mỗi vết sẹo đều kể một câu chuyện."},
+      {quote: "Một bông hoa khi nở không cần biết nó sẽ tàn lúc nào."},
+      {quote: "Bạn không thể lắng nghe trái tim mình khi đang la hét với một ngọn thác."},
+      {quote: "Hãy tìm thấy bản thân trong rừng, nơi bạn có thể lạc lối."},
+      {quote: "Ánh sáng mặt trời không chọn nơi để chiếu rọi."},
+      {quote: "Hãy làm một bông hoa, không cố gắng trở thành một bông hoa khác."},
+      {quote: "Hành trình của một con sông không phải là để đến biển, mà để trải nghiệm dòng chảy của chính nó."},
+      {quote: "Một khu rừng có thể tối tăm nhưng đó là nơi chứa đựng nhiều sự sống nhất."},
+      {quote: "Cái cây không lớn lên mãi mãi, nó phải biết khi nào thì dừng lại."},
+      {quote: "Mặt trời mọc rồi lặn, không có điều gì là vĩnh cửu."},
+      {quote: "Cơn mưa không chỉ làm ướt đường, mà còn nuôi dưỡng những hạt mầm."},
+      {quote: "Cái cây cao nhất cũng bắt đầu từ một hạt mầm bé nhỏ."},
+      {quote: "Mỗi vết nứt trên đá đều là nơi để ánh sáng len lỏi vào."},
+      {quote: "Một khu vườn không chỉ có hoa, mà còn có cỏ dại."},
+      {quote: "Học cách sống như nước: mềm mại nhưng có thể đi đến mọi nơi."},
+      {quote: "Mặt trời làm khô nước, nhưng mặt trăng lại làm nó dâng lên."},
+      {quote: "Thiên nhiên không phán xét, nó chỉ đơn giản là."},
+      {quote: "Nếu bạn muốn hiểu bản thân, hãy quan sát thiên nhiên."},
+      {quote: "Hãy nhớ rằng, sau mùa đông lạnh giá, một bông hoa sẽ nở rộ."},
+      {quote: "Thiên nhiên luôn đúng, còn chúng ta thì không."},
+      {quote: "☕ Enjoy your free coffee today!"}
     ];
 
-    // chọn ngẫu nhiên
+    // Chọn ngẫu nhiên 1 quote
     const randomItem = items[Math.floor(Math.random() * items.length)];
-    document.getElementById('heroImg').src = randomItem.img;
     document.getElementById('quoteText').textContent = randomItem.quote;
+    document.getElementById('heroImg').src = "https://picsum.photos/600/400?random=" + Math.floor(Math.random()*1000);
   </script>
 </body>
 </html>
