@@ -1,128 +1,127 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quotes & Coffee</title>
   <style>
     body {
-      margin: 0;
-      font-family: sans-serif;
-      background: #f4f4f4;
-      height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: #fdfcf7;
+      font-family: "Georgia", serif;
+      text-align: center;
+      padding: 20px;
     }
-
-    .card {
-      width: 100%;
-      max-width: 500px;
-      height: 90vh; /* toàn bộ card chiếm 90% màn hình */
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-      overflow: hidden;
+    .container {
+      max-width: 700px;
     }
-
-    .card img.hero {
-      width: 100%;
-      height: 60%;       /* ảnh chiếm 60% */
-      object-fit: cover; /* không méo ảnh */
-    }
-
     .quote {
-      text-align: center;
-      font-size: 18px;
-      font-weight: bold;
-      padding: 10px 20px;
-      flex: 0 0 auto;
+      font-size: 1.6em;
+      margin-bottom: 20px;
+      line-height: 1.4;
     }
-
     .logo {
-      text-align: center;
-      padding: 10px;
+      margin-top: 30px;
+      width: 120px;
     }
-
-    .logo img {
-      width: 80px;
-      height: auto;
+    .promo {
+      color: #d32f2f;
+      font-weight: bold;
+      font-size: 1.8em;
+      margin-top: 20px;
     }
   </style>
 </head>
 <body>
-  <div class="card">
-    <img id="heroImg" class="hero" src="" alt="Hình minh họa">
-    <div id="quoteText" class="quote"></div>
-    <div class="logo">
-      <img src="logo.jpg" alt="Logo">
-    </div>
+  <div class="container">
+    <div id="quote" class="quote"></div>
+    <div id="promo" class="promo"></div>
+    <img src="logo.jpg" alt="Logo" class="logo">
   </div>
 
   <script>
     const quotes = [
-      "Một hạt giống không bao giờ vội vã để trở thành một cái cây.",
-      "Sự thay đổi của một dòng sông không bao giờ ngừng nghỉ, dù bạn có nhìn thấy nó hay không.",
-      "Một ngọn núi không bao giờ phải chứng minh sự vĩ đại của nó.",
-      "Nước bào mòn đá không phải vì sức mạnh, mà vì sự kiên trì.",
-      "Hãy học cách kiên nhẫn từ một cái cây đang chờ đợi mùa xuân của nó.",
-      "Mỗi chiếc lá rụng đều dạy ta bài học về sự buông bỏ.",
-      "Chúng ta không phải là một phần của thiên nhiên, chúng ta chính là thiên nhiên.",
-      "Chẳng có chiếc lá nào đứng một mình trên cây.",
-      "Gió không chỉ thổi qua một cái cây, mà thổi qua cả khu rừng.",
-      "Giống như mặt trăng, cuộc đời chúng ta cũng có những lúc đầy và khuyết.",
-      "Một hạt cát trong sa mạc cũng là một phần của vũ trụ.",
-      "Sự sống của bầy chim không chỉ nằm trong mỗi con chim, mà còn nằm trong sự chuyển động của cả bầy.",
-      "Mọi thứ trở lại với cát bụi. Đó là vòng tuần hoàn, không phải là sự kết thúc.",
-      "Một bông hoa hoang dã không cần ai khen ngợi để nở rộ.",
-      "Thiên nhiên không bao giờ vội vã, nhưng mọi thứ đều được hoàn thành.",
-      "Học cách sống như một cái cây, để mỗi mùa trôi qua đều có giá trị của riêng nó.",
-      "Vẻ đẹp của một khu rừng nằm ở sự đa dạng của nó, không phải ở sự đồng nhất.",
-      "Khi bạn nhìn vào một cái cây, bạn thấy sự tĩnh lặng. Khi bạn nhìn vào một con sông, bạn thấy sự chuyển động.",
-      "Đừng cố gắng thay đổi dòng sông, hãy học cách hòa mình vào dòng chảy của nó.",
-      "Chỉ khi bạn lặng im, bạn mới nghe thấy tiếng thì thầm của một bông hoa.",
-      "Một bông hoa đơn giản cũng có thể làm bạn mỉm cười.",
-      "Sự sống và cái chết không phải là hai mặt đối lập, mà là hai mặt của cùng một đồng xu.",
-      "Giống như một mùa đông, những khó khăn sẽ giúp ta mạnh mẽ hơn để đón chờ mùa xuân.",
-      "Con sâu bướm phải chết đi để hóa thành bướm.",
-      "Một hạt giống phải nứt ra để mầm sống trỗi dậy.",
-      "Hãy nhìn vào một cái cây rụng lá, nó không chết, nó đang chuẩn bị cho sự tái sinh.",
-      "Một chiếc lá vàng không níu kéo cành cây.",
-      "Chỉ khi cơn bão qua đi, bầu trời mới hiện ra rõ ràng.",
-      "Hãy làm một hạt mưa rơi xuống, chấp nhận tan biến để nuôi dưỡng mặt đất.",
-      "Biển không bao giờ chống lại những con sóng, nó chỉ hòa mình vào chúng.",
-      "Thiên nhiên không giấu giếm vết sẹo của nó. Mỗi vết sẹo đều kể một câu chuyện.",
-      "Một bông hoa khi nở không cần biết nó sẽ tàn lúc nào.",
-      "Bạn không thể lắng nghe trái tim mình khi đang la hét với một ngọn thác.",
-      "Hãy tìm thấy bản thân trong rừng, nơi bạn có thể lạc lối.",
-      "Ánh sáng mặt trời không chọn nơi để chiếu rọi.",
-      "Hãy làm một bông hoa, không cố gắng trở thành một bông hoa khác.",
-      "Hành trình của một con sông không phải là để đến biển, mà để trải nghiệm dòng chảy của chính nó.",
-      "Một khu rừng có thể tối tăm nhưng đó là nơi chứa đựng nhiều sự sống nhất.",
-      "Cái cây không lớn lên mãi mãi, nó phải biết khi nào thì dừng lại.",
-      "Mặt trời mọc rồi lặn, không có điều gì là vĩnh cửu.",
-      "Cơn mưa không chỉ làm ướt đường, mà còn nuôi dưỡng những hạt mầm.",
-      "Cái cây cao nhất cũng bắt đầu từ một hạt mầm bé nhỏ.",
-      "Mỗi vết nứt trên đá đều là nơi để ánh sáng len lỏi vào.",
-      "Một khu vườn không chỉ có hoa, mà còn có cỏ dại.",
-      "Học cách sống như nước: mềm mại nhưng có thể đi đến mọi nơi.",
-      "Mặt trời làm khô nước, nhưng mặt trăng lại làm nó dâng lên.",
-      "Thiên nhiên không phán xét, nó chỉ đơn giản là.",
-      "Nếu bạn muốn hiểu bản thân, hãy quan sát thiên nhiên.",
-      "Hãy nhớ rằng, sau mùa đông lạnh giá, một bông hoa sẽ nở rộ.",
-      "Thiên nhiên luôn đúng, còn chúng ta thì không.",
-      "Enjoy your free coffee today!"
+      "Một ly cà phê không chỉ để tỉnh, mà để nhớ mình đang sống.",
+      "Đắng trong cốc không đắng bằng việc bỏ quên ước mơ của mình.",
+      "Mỗi ước mơ đều là hạt giống, nó chỉ chờ được một lần tưới.",
+      "Người bán, người mua – chỉ là danh. Người với người – mới là thật.",
+      "Đúng hay sai không quan trọng, quan trọng là có dám thử.",
+      "Một điểm dừng, hai cuộc đời chạm nhau.",
+      "Có những giấc mơ không cần thành hiện thực, chỉ cần được thắp lại.",
+      "Tỉnh để mơ, mơ để sống.",
+      "Cà phê có thể đắng, nhưng khoảnh khắc sẻ chia thì ngọt.",
+      "Chúng ta gặp nhau không để phán xét, mà để bước tiếp nhẹ nhàng hơn.",
+      "Điều vững bền không nằm ở hương vị, mà ở sự chân thành.",
+      "Một lần dừng lại cũng có thể đổi cả một ngày dài.",
+      "Ly cà phê nhỏ, nhưng có thể chứa một vũ trụ lớn.",
+      "Bạn không uống cà phê, bạn đang uống một khoảnh khắc của chính mình.",
+      "Có khi tỉnh táo không phải để chạy nhanh hơn, mà để thấy rõ đường đi.",
+      "Không có ly cà phê nào giống ly cà phê hôm qua – như con người vậy.",
+      "Đừng vội uống, hãy hít mùi hương trước. Đó là cách sống chậm.",
+      "Mỗi ly cà phê là một tấm gương soi tâm trạng bạn hôm đó.",
+      "Có những buổi sáng bạn chỉ cần một cốc nước, nhưng có những buổi sáng bạn cần một người hiểu.",
+      "Chúng ta không chỉ bán cà phê, chúng ta trao thời gian để thở.",
+      "Một quán nhỏ cũng có thể chứa đựng ước mơ lớn.",
+      "Tỉnh táo không phải để làm việc nhiều hơn, mà để sống sâu hơn.",
+      "Ly cà phê có thể đậm hay nhạt, nhưng lòng người thì chỉ cần thật.",
+      "Đến đây để nghỉ, để uống, hay để lặng im cũng được.",
+      "Cà phê đen không chỉ là thói quen, nó là ký ức.",
+      "Có thể bạn chỉ ghé một lần, nhưng ký ức có thể theo bạn cả đời.",
+      "Đừng sợ thất bại, hạt cà phê phải rang mới tỏa mùi thơm.",
+      "Cà phê không hối thúc bạn, nó đợi bạn như một người bạn.",
+      "Chúng ta gặp nhau qua cà phê, nhưng thật ra là qua nhau.",
+      "Tỉnh để mơ, mơ để không ngủ quên.",
+      "Mỗi cốc cà phê là một tấm vé đi xa trong tâm trí.",
+      "Đôi khi, sự thay đổi bắt đầu từ một ngụm nhỏ.",
+      "Không có ai là khách lạ khi cùng chia sẻ một hương cà phê.",
+      "Đừng chỉ uống để tỉnh, hãy uống để thấy.",
+      "Cà phê cũng như cuộc đời, có vị đắng mới thấy được ngọt.",
+      "Mỗi người uống cà phê theo cách riêng, như cách họ sống.",
+      "Thói quen có thể là nhà tù, nhưng cũng có thể là mái ấm.",
+      "Chúng ta không đến để dạy nhau, chỉ đến để soi sáng nhau.",
+      "Một quán cà phê không chỉ bán đồ uống, nó bán cảm xúc.",
+      "Cà phê là ngôn ngữ không cần phiên dịch.",
+      "Bạn có thể tỉnh táo mà không cần cà phê, nhưng bạn không thể sống mà thiếu một ước mơ.",
+      "Chúng ta không chỉ tỉnh với cà phê, mà tỉnh với chính mình.",
+      "Đến đây để tìm cà phê, hay tìm lại mình?",
+      "Mỗi ly cà phê là một cơ hội trò chuyện với bản thân.",
+      "Không có cà phê nào hoàn hảo, chỉ có khoảnh khắc hoàn hảo khi uống nó.",
+      "Cà phê không chữa lành, nhưng nó làm vết thương nhẹ hơn.",
+      "Đừng so sánh vị hôm nay với hôm qua. Cà phê cũng như cuộc đời, luôn mới.",
+      "Người đến, người đi. Mùi cà phê còn ở lại.",
+      "Đừng chỉ tỉnh vì caffeine, hãy tỉnh vì niềm tin.",
+      "Một ly cà phê, một khoảnh khắc. Có thể đó chính là khởi đầu của bạn."
     ];
 
-    // Random quote
-    const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-    document.getElementById("quoteText").innerText = randomQuote;
+    let counter = 0; // đếm lượt
+    let won = false; // có ai trúng chưa
 
-    // Random ảnh minh họa từ picsum.photos
-    document.getElementById("heroImg").src = `https://picsum.photos/800/600?random=${Math.floor(Math.random() * 1000)}`;
+    function showQuote() {
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      document.getElementById("quote").innerText = quotes[randomIndex];
+      const promoDiv = document.getElementById("promo");
+
+      counter++;
+
+      // Tính xác suất dựa trên lượt
+      let chance = counter / 50; // tăng dần từ 1/50 đến 50/50
+      let roll = Math.random();
+
+      if (roll < chance || counter >= 50) {
+        promoDiv.innerText = "🎉 Enjoy your free coffee today! 🎉";
+        counter = 0; // reset vòng
+        won = true;
+      } else {
+        promoDiv.innerText = "";
+        won = false;
+      }
+    }
+
+    // hiển thị quote khi load
+    showQuote();
   </script>
 </body>
 </html>
